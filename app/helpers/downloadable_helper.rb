@@ -1,0 +1,2 @@
+module DownloadableHelper
+end

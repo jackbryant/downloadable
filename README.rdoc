@@ -1,0 +1,4 @@
+== README
+
+Simple application that lets you search for a Souncloud user and then return all the tracks by that user that are available for download with an option to download all of them with one click. 
+

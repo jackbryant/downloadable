@@ -1,0 +1,12 @@
+<h1> downloadable. </h1>
+
+		<% @user_tracks.each do |track| %>
+			<p> <%= track.title %> </p>
+			<p> <%= track.downloadable %> </p>
+				<% if track.downloadable == true %>
+						<%= link_to(track.download_url) %>
+				<% end %>
+		<% end %>
+
+
+
