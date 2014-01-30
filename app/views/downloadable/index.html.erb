@@ -1,12 +1,14 @@
 <h1> downloadable. </h1>
 
 		<% @user_tracks.each do |track| %>
-			<p> <%= track.title %> </p>
-			<p> <%= track.downloadable %> </p>
-				<% if track.downloadable == true %>
-						<%= link_to(track.download_url) %>
-				<% end %>
+			<h4> <%= track.title %> </h4>
+			<% track_url = track.permalink_url %>
+			<% embed_info = @client.get('/oembed', :url => track_url) %>
+			<% embed_mod1 = embed_info['html'] %>
+			<% embed_mod2 = embed_mod1.gsub(/(width="100%")/, "width='50%'") %>
+			<% embed_mod3 = embed_mod2.gsub(/(height="400")/, "height='110'") %>
+			<% embed_mod4 = embed_mod3.gsub(/(visual=true)/, '') %>
+			<%== embed_mod4 %>
 		<% end %>
-
 
 
