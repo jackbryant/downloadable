@@ -1,10 +1,6 @@
 <h1> downloadable. </h1>
 
-<%= form_tag search_path, method: "get" do %>
-	<%= label_tag :q, "Search for a Soundcloud User (be sure to find have their exact username or it won't work - sorry!" %>
-	<%= text_field_tag :q, params[:search] %>
-	<%= submit_tag "search", :name => nil %>
-<% end %>
+<h3> Tracks available for download for User: <%= @search_result %> </h3>
 
 <% @user_tracks.each do |track| %>
 	<% if track.downloadable %>
@@ -19,6 +15,3 @@
 		<%== embed_mod5 %>
 	<% end %>
 <% end %>
-
-
-

@@ -1,0 +1,6 @@
+<h1> downloadable. </h1>
+<%= form_for @search, :url => { :action => "create" }, :html => {:class => "nifty_form"} do |f| %>
+  <%= label_tag :q, "Search for a Soundcloud User (be sure to find have their exact username or it won't work - sorry!" %>
+  <%= f.text_field :content %>
+  <%= f.submit "search" %>
+<% end %>
