@@ -3,15 +3,16 @@
 <h3> Tracks available for download for User: <%= @search_result %> </h3>
 
 <% @user_tracks.each do |track| %>
-	<% if track.downloadable %>
-		<h4> <%= track.title %> </h4>
-		<% track_url = track.permalink_url %>
-		<% embed_info = @client.get('/oembed', :url => track_url) %>
-		<% embed_mod1 = embed_info['html'] %>
-		<% embed_mod2 = embed_mod1.gsub(/(width="100%")/, "width='50%'") %>
-		<% embed_mod3 = embed_mod2.gsub(/(height="400")/, "height='75'") %>
-		<% embed_mod4 = embed_mod3.gsub(/(visual=true)/, '') %>
-		<% embed_mod5 = embed_mod4.insert(179, 'download=true&') %>
-		<%== embed_mod5 %>
+    <% if track.downloadable %>
+          <h4> <%= track.title %> </h4>
+           <% track_url = track.permalink_url %>
+           <% embed_info = @client.get('/oembed', :url => track_url) %>
+           <% embed_mod1 = embed_info['html'] %>
+           <% embed_mod2 = embed_mod1.gsub(/(width="100%")/, "width='50%'") %>
+           <% embed_mod3 = embed_mod2.gsub(/(height="400")/, "height='75'") %>
+           <% embed_mod4 = embed_mod3.gsub(/(visual=true)/, '') %>
+           <% embed_mod5 = embed_mod4.insert(179, 'download=true&') %>
+           <%== embed_mod5 %>
 	<% end %>
 <% end %>
+
