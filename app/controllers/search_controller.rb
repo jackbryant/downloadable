@@ -17,14 +17,15 @@ class SearchController < ApplicationController
 		@client = Soundcloud.new(client_id: 'd8b21e837485a3086c3f20da86fee214')
 		@search = Search.last
 		@search_result = @search.content
-		uri = URI("http://api.soundcloud.com/resolve.json?url=http://soundcloud.com/#{@search_result}&client_id=d8b21e837485a3086c3f20da86fee214")
 
+		uri = URI("http://api.soundcloud.com/resolve.json?url=http://soundcloud.com/#{@search_result}&client_id=d8b21e837485a3086c3f20da86fee214")
 		Net::HTTP.start(uri.host, uri.port) do |http|
   			request = Net::HTTP::Get.new uri
-
   			@res = http.request request # Net::HTTPResponse object
 		end
+
 		@res
+
 		@res_json = @res.to_json
 		@res_hash = JSON.parse(@res_json)
 		@res_url = @res_hash["location"]
@@ -34,11 +35,12 @@ class SearchController < ApplicationController
 		@res_url_3 = @res_url_2.gsub(/(.jsonclient_id=d8b21e837485a3086c3f20da86fee214"])/, "")
 		@user_id = @res_url_3.gsub("[", "")
 		@user_tracks = @client.get("/users/#{@user_id}/tracks")
+		@track_count = @user_tracks.count { |track| track.downloadable }
 	end
  
 	private
  	def search_params
     	params.require(:search).permit(:content)
   	end
-  	
+
 end
